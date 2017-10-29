@@ -10,15 +10,15 @@
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 20px;
 }
 
 p {
-    font-size: 15px;
+    font-size: 20px;
 }
 
 div {
-    font-size: 10px;
+    font-size: 15px;
 }
 
 .asText {
@@ -29,6 +29,21 @@ div {
 }
 
 body {
-    transform: scale(1);
+    transform: scale(0.8);
     transform-origin: 0 0;
+}
+
+#footer {
+    float: left;
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+}
+
+#footer1 {
+    float: left;
+    margin: 0;
+    padding: 1em;
+    text-align: center;
+    font-size: 15px;
 }

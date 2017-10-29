@@ -12,15 +12,20 @@ var Todo = /** @class */ (function () {
     };
     return Todo;
 }());
+
 //      SAMPLE DATA
 var list = new Todo(["go for a ride", "swimming", "running", "go to gym", "complete the assignment",
     "learn angular", "study typescript", "prepare for the tes"], ["active", "active", "active", "active", "completed", "completed", "deleted", "deleted"]);
+
+//  ADD ITEM TO LIST
 function addItem(taskName, taskStatus) {
     list.add({
         taskName: taskName,
         taskStatus: taskStatus
     });
 }
+
+//  MARK AND UNMARK A TODO
 function toggleTodo(index) {
     // var list = JSON.parse(localStorage.getItem("listArray"));
     if (list.todo_s[index] === "active") {
@@ -32,10 +37,14 @@ function toggleTodo(index) {
         refreshTodos();
     }
 }
+
+//  DELETE A TODO BY CHANGING STATUS AS DELETED
 function deleteTodo(index) {
     list.todo_s[index] = "deleted";
     refreshTodos();
 }
+
+//  REFRESHES ALL TODOS BY RELOADING THE TODOS
 function refreshTodos() {
     document.getElementById("todos_list_div_active").innerHTML = null;
     document.getElementById("todos_list_div_completed").innerHTML = null;
@@ -47,6 +56,8 @@ function refreshTodos() {
     loadCompletedTodos();
     loadDeletedTodos();
 }
+
+//  CREATE A NEW TODO IN HTML
 function createTodo(taskName) {
     var index = list.todo_id.indexOf(taskName);
     var todo_box = document.createElement("div");
@@ -102,6 +113,8 @@ function createTodo(taskName) {
     console.log("list updated");
     localStorage.setItem("listArray", JSON.stringify(list));
 }
+
+//  LOADS ACTIVE TODOS
 function loadActiveTodos() {
     var list = JSON.parse(localStorage.getItem("listArray"));
     for (var i = 0; i < list.todo_id.length; i++) {
@@ -159,6 +172,7 @@ function loadActiveTodos() {
         }
     }
 }
+//  LOADS COMPLETED TODOS
 function loadCompletedTodos() {
     var list = JSON.parse(localStorage.getItem("listArray"));
     for (var j = 0; j < list.todo_id.length; j++) {
@@ -193,7 +207,7 @@ function loadCompletedTodos() {
             var todo_element = document.createElement("label");
             todo_element.innerText = taskName;
             todo_element.style.textDecoration = "line-through";
-            todo_element.setAttribute("onclick", "editTodos(" + j + ")");
+            // todo_element.setAttribute("onclick", "editTodos(" + j + ")");
             todo_box_row_2.appendChild(todo_element);
             if (list.todo_s[j] != "deleted") {
                 var delete_button = document.createElement("button");
@@ -216,6 +230,8 @@ function loadCompletedTodos() {
         }
     }
 }
+
+//  LOADS DELETED TODOS
 function loadDeletedTodos() {
     var list = JSON.parse(localStorage.getItem("listArray"));
     for (var i = 0; i < list.todo_id.length; i++) {
@@ -249,6 +265,8 @@ function loadDeletedTodos() {
         }
     }
 }
+
+//  EDIT A TODO
 function editTodos(index) {
     var taskName = list.todo_id[index];
     var edited = window.prompt("Edit Todo, Change the AIM !!", taskName);
@@ -258,6 +276,8 @@ function editTodos(index) {
         refreshTodos();
     }
 }
+
+//  STORE SAMPLE DATA AND NEW TODOS IN LOCAL STORAGE
 function setItemToLocalStorage(list) {
     console.log("inside storage");
     if (localStorage.length == 0) {
@@ -265,6 +285,8 @@ function setItemToLocalStorage(list) {
         localStorage.setItem("listArray", JSON.stringify(list));
     }
 }
+
+//  LOADS THE DATA STORED IN LOCAL STORAGE
 function preLoad() {
     console.log("inside preload");
     var tempList = JSON.parse(localStorage.getItem("listArray"));
